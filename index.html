@@ -42,17 +42,28 @@
         .judul-small {
             text-align: center;
             font-size: 0.8rem;
-            color: white;
-            background: #d32f2f;
+            color: #d32f2f;
+            background: #fff;
             padding: 5px 10px;
             border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             animation: glowing 2s infinite alternate, floating 4s infinite ease-in-out;
         }
-        .audio-controls {
-            background: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        @keyframes glowing {
+            0% {
+                text-shadow: 0 0 5px #ffeb3b, 0 0 10px #ffeb3b, 0 0 15px #ffeb3b;
+            }
+            100% {
+                text-shadow: 0 0 15px #ffeb3b, 0 0 30px #ffeb3b, 0 0 45px #ffeb3b;
+            }
+        }
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
         .audio-controls button {
             background: #fff;
@@ -73,7 +84,6 @@
             text-align: center;
             font-size: 2rem;
             margin-bottom: 15px;
-            position: relative;
         }
         .instruksi {
             text-align: center;
