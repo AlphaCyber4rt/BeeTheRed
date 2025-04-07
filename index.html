@@ -13,6 +13,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden; /* Menghilangkan scrollbar */
         }
 
         .amplop {
@@ -63,6 +64,26 @@
             }
             50% {
                 transform: translateY(-10px);
+            }
+        }
+
+        /* Efek emoji hati */
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ff6d00; /* Warna hati */
+            pointer-events: none;
+            animation: floatHeart 3s ease-out forwards;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.5);
             }
         }
 
@@ -278,6 +299,22 @@
         // Inisialisasi tampilan awal
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('step1').classList.add('active');
+
+            // Auto-generate emoji hati
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.textContent = '❤️';
+                heart.classList.add('heart');
+                const animatedText = document.getElementById('animatedText');
+                const rect = animatedText.getBoundingClientRect();
+
+                // Posisi emoji hati di sekitar teks
+                heart.style.left = `${rect.left + Math.random() * rect.width}px`;
+                heart.style.top = `${rect.top + Math.random() * rect.height}px`;
+
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000); // Hapus setelah animasi selesai
+            }, 500); // Interval pembuatan emoji hati
         });
     </script>
 </body>
