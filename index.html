@@ -135,32 +135,6 @@
             .emoji { font-size: 2.5rem; }
             .tombol { padding: 10px 20px; }
         }
-        .heart-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        .heart-rain span {
-            position: absolute;
-            bottom: 100%;
-            font-size: 24px;
-            opacity: 0.9;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 <body>
@@ -174,7 +148,6 @@
                 <audio id="audio" src="https://alphacyber4rt.github.io/File/DJikhlas.mp3" preload="auto"></audio>
             </div>
         </div>
-
         <h1 class="judul">💌 RAHASIA HATI 💌</h1>
         <p class="instruksi">Klik untuk Rahasia hati yang belum pernah diceritain… 😏😜 </p>
         <!-- LANGKAH 1 -->
@@ -226,9 +199,6 @@
                 <p>🎭 Aku nggak maksa jadi pacar:<br>
                 <small>"Tapi kalau ada cowok lain yang deketin kamu... aku bisa pura-pura jadi yang udah duluan 🫣✨"</small></p>
             </div>
-            <div class="emoji-container">
-                <div class="emoji" onclick="animateEmoji('🫠')">🫠</div>
-            </div>
             <div style="border-top:2px dashed #ff6d00;padding:15px">
                 <p style="font-size:0.9em">❤️ Intinya:<br>
                 Aku mungkin nggak bisa ngasih kamu semua hal indah di dunia...<br>
@@ -236,15 +206,12 @@
             </div>
         </div>
     </div>
-    <!-- Efek Hujan Hati -->
-    <div class="heart-rain" id="heartRain"></div>
     <script>
         let currentStep = 1;
         const totalSteps = 4;
         let isPlaying = false;
         const audio = document.getElementById('audio');
         const audioButton = document.getElementById('audioButton');
-
         function lanjut(nomor) {
             if (nomor > totalSteps) return;
             document.querySelectorAll('.step').forEach(step => {
@@ -258,7 +225,6 @@
             }, 300);
             currentStep = nomor;
         }
-
         function animateEmoji(emoji) {
             const element = document.createElement('div');
             element.textContent = emoji;
@@ -274,7 +240,6 @@
             document.body.appendChild(element);
             setTimeout(() => element.remove(), 2000);
         }
-
         // Kontrol audio
         function playAudio() {
             audio.play()
@@ -287,7 +252,6 @@
                     alert("Aktifkan suara/browser untuk memutar audio!");
                 });
         }
-
         function toggleAudio() {
             if (isPlaying) {
                 audio.pause();
@@ -297,45 +261,12 @@
                 playAudio();
             }
         }
-
         document.querySelector('.tombol').addEventListener('click', () => {
             if (!isPlaying) playAudio();
         });
-
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('step1').classList.add('active');
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.textContent = '❤️';
-                heart.classList.add('heart');
-                const judul = document.querySelector('.judul');
-                const rect = judul.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2 - 10;
-                const centerY = rect.top - 30;
-                heart.style.left = `${centerX}px`;
-                heart.style.top = `${centerY}px`;
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 3000);
-            }, 1000);
-            startContinuousHeartRain();
         });
-
-        const heartEmojis = ['❤️', '💙', '💜', '💛', '💚', '🧡', '🤎', '🖤', '🤍', '💖', '💘', '💝'];
-        function startContinuousHeartRain() {
-            setInterval(() => {
-                createHeart();
-            }, 200);
-        }
-
-        function createHeart() {
-            const heartContainer = document.getElementById("heartRain");
-            const heart = document.createElement("span");
-            heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-            heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-            heartContainer.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
     </script>
 </body>
 </html>
