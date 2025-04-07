@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeeTheRed</title>
+    <!-- Google Fonts Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,16 +13,16 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Comic Neue', cursive;
+            /* Ganti Comic Neue ke Roboto */
+            font-family: 'Roboto', Arial, sans-serif;
             background: linear-gradient(135deg, #ffd7b5, #ffe6cc);
             margin: 0;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Menghilangkan scrollbar */
+            overflow: hidden;
         }
-
         .amplop {
             background: white;
             border-radius: 25px;
@@ -30,17 +32,15 @@
             padding: 30px;
             position: relative;
             overflow: hidden;
-            z-index: 2; /* Pastikan konten utama di atas partikel */
+            z-index: 2;
         }
-
         .judul {
             color: #d32f2f;
             text-align: center;
             font-size: 2rem;
             margin-bottom: 15px;
-            position: relative; /* Untuk menempatkan emoji hati */
+            position: relative;
         }
-
         .judul-small {
             text-align: center;
             font-size: 0.8rem;
@@ -53,8 +53,6 @@
             position: relative;
             animation: glowing 2s infinite alternate, floating 4s infinite ease-in-out;
         }
-
-        /* Animasi glowing */
         @keyframes glowing {
             0% {
                 text-shadow: 0 0 5px #ffeb3b, 0 0 10px #ffeb3b, 0 0 15px #ffeb3b;
@@ -63,8 +61,6 @@
                 text-shadow: 0 0 15px #ffeb3b, 0 0 30px #ffeb3b, 0 0 45px #ffeb3b;
             }
         }
-
-        /* Animasi floating */
         @keyframes floating {
             0%, 100% {
                 transform: translateY(0px);
@@ -73,16 +69,13 @@
                 transform: translateY(-10px);
             }
         }
-
-        /* Efek emoji hati */
         .heart {
             position: absolute;
             font-size: 1.5rem;
-            color: #ff6d00; /* Warna hati */
+            color: #ff6d00;
             pointer-events: none;
             animation: floatHeart 3s ease-out forwards;
         }
-
         @keyframes floatHeart {
             0% {
                 opacity: 1;
@@ -93,14 +86,12 @@
                 transform: translateY(-50px) scale(0.8);
             }
         }
-
         .instruksi {
             text-align: center;
             color: #555;
             font-size: 1rem;
             margin-bottom: 25px;
         }
-
         .step {
             display: none;
             opacity: 0;
@@ -110,13 +101,11 @@
             background: #fff5e6;
             transition: all 0.5s ease;
         }
-
         .step.active {
             display: block;
             opacity: 1;
             transform: translateX(0);
         }
-
         .emoji-container {
             display: flex;
             justify-content: center;
@@ -125,13 +114,11 @@
             gap: 10px;
             margin: 20px 0;
         }
-
         .emoji {
             font-size: 3rem;
             cursor: pointer;
             transition: 0.3s;
         }
-
         .tombol {
             background: #d32f2f;
             color: white;
@@ -144,14 +131,11 @@
             font-weight: bold;
             transition: 0.3s;
         }
-
         @media (max-width: 480px) {
             .judul { font-size: 1.5rem; }
             .emoji { font-size: 2.5rem; }
             .tombol { padding: 10px 20px; }
         }
-
-        /* Efek Hujan Hati */
         .heart-rain {
             position: fixed;
             top: 0;
@@ -159,9 +143,8 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1; /* Di bawah konten utama */
+            z-index: 1;
         }
-
         .heart-rain span {
             position: absolute;
             bottom: 100%;
@@ -169,7 +152,6 @@
             opacity: 0.9;
             animation: fall linear infinite;
         }
-
         @keyframes fall {
             0% {
                 transform: translateY(0);
@@ -184,12 +166,9 @@
 </head>
 <body>
     <div class="amplop">
-        <!-- Tulisan kecil dengan efek auto-play -->
         <p id="animatedText" class="judul-small">AlphaCyber4rt</p>
         <h1 class="judul">💌 RAHASIA HATI 💌</h1>
         <p class="instruksi">Klik untuk Rahasia hati yang belum pernah diceritain… 😏😜 </p>
-
-        <!-- LANGKAH 1 -->
         <div class="step active" id="step1" onclick="lanjut(2)">
             <p style="font-size:1.1em">📅 Tanggal: <em>Selamanya (Meskipun kamu pacar orang 😝)</em></p>
             <div class="emoji-container">
@@ -197,8 +176,6 @@
             </div>
             <button class="tombol" onclick="event.stopPropagation(); playAudio(); lanjut(2)">Lembar Cerita Pertama 📬</button>
         </div>
-
-        <!-- BAB 1 -->
         <div class="step" id="step2" onclick="lanjut(3)">
             <h3>💬 BAB 1: OBROLAN YANG NGGAK PERNAH NGEJENUHIN</h3>
             <p style="font-size:0.9em">
@@ -213,8 +190,6 @@
             </div>
             <button class="tombol" onclick="event.stopPropagation(); lanjut(3)">Lanjut, Lembar Cerita ke2 ❤️</button>
         </div>
-
-        <!-- BAB 2 -->
         <div class="step" id="step3" onclick="lanjut(4)">
             <h3>🎢 BAB 2: MOMEN-MOMEN KECIL YANG NGANGENIN</h3>
             <p style="font-size:0.9em">
@@ -229,25 +204,19 @@
             </div>
             <button class="tombol" onclick="event.stopPropagation(); lanjut(4)">Lembaran Berikutnya 💖</button>
         </div>
-
-        <!-- BAB 3 -->
         <div class="step" id="step4">
             <h3 style="color:#d32f2f">🌅 BAB 3: STATUS BOLEH NGGAK JELAS, ASAL KAMU NGGAK ILANG 😆</h3>
             <div style="text-align:left;padding:10px;font-size:0.9em">
                 <p>🕵️ Aku nggak nanya “kita ini apa?”:<br>
                 <small>"Tapi kalau kamu tiba-tiba hilang, aku bakal jadi detektif 24 jam" 🔍😂</small></p>
-
                 <p>🎁 Aku belum ngasih coklat atau bunga:<br>
                 <small>"Tapi stok perhatian udah aku siapkan khusus buat kamu tiap hari (bisa COD langsung ke hati 💌)"</small></p>
-
                 <p>🎭 Aku nggak maksa jadi pacar:<br>
                 <small>"Tapi kalau ada cowok lain yang deketin kamu... aku bisa pura-pura jadi yang udah duluan 🫣✨"</small></p>
             </div>
-
             <div class="emoji-container">
                 <div class="emoji" onclick="animateEmoji('🫠')">🫠</div>
             </div>
-
             <div style="border-top:2px dashed #ff6d00;padding:15px">
                 <p style="font-size:0.9em">❤️ Intinya:<br>
                 Aku mungkin nggak bisa ngasih kamu semua hal indah di dunia...<br>
@@ -255,37 +224,29 @@
             </div>
         </div>
     </div>
-
-    <!-- Audio Player -->
     <div style="position: fixed; bottom: 20px; right: 20px; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
         <button onclick="toggleAudio()" id="audioButton">🎵 Putar Lagu</button>
         <audio id="audio" src="https://alphacyber4rt.github.io/File/DJikhlas.mp3" preload="auto"></audio>
     </div>
-
-    <!-- Efek Hujan Hati -->
     <div class="heart-rain" id="heartRain"></div>
-
     <script>
         let currentStep = 1;
         const totalSteps = 4;
         let isPlaying = false;
+        const audio = document.getElementById('audio');
+        const audioButton = document.getElementById('audioButton');
 
         function lanjut(nomor) {
             if (nomor > totalSteps) return;
-
-            // Sembunyikan semua step
             document.querySelectorAll('.step').forEach(step => {
                 step.style.display = 'none';
                 step.classList.remove('active');
             });
-
-            // Tampilkan step baru
             const target = document.getElementById('step' + nomor);
             setTimeout(() => {
                 target.style.display = 'block';
                 setTimeout(() => target.classList.add('active'), 50);
             }, 300);
-
             currentStep = nomor;
         }
 
@@ -305,10 +266,6 @@
             setTimeout(() => element.remove(), 2000);
         }
 
-        // Kontrol audio
-        const audio = document.getElementById('audio');
-        const audioButton = document.getElementById('audioButton');
-
         function playAudio() {
             audio.play()
                 .then(() => {
@@ -316,8 +273,8 @@
                     audioButton.textContent = "⏸️ Jeda Lagu";
                 })
                 .catch(error => {
-                    console.log("Gagal memutar audio:", error);
-                    alert("Aktifkan suara di browser untuk memutar lagu!");
+                    console.error("Gagal memutar audio:", error);
+                    alert("Aktifkan suara/browser untuk memutar audio!");
                 });
         }
 
@@ -331,47 +288,33 @@
             }
         }
 
-        // Autoplay saat tombol "Buka Surat" diklik
         document.querySelector('.tombol').addEventListener('click', () => {
             if (!isPlaying) playAudio();
         });
 
-        // Inisialisasi tampilan awal
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('step1').classList.add('active');
-
-            // Auto-generate emoji hati tepat di atas 💌
             setInterval(() => {
                 const heart = document.createElement('div');
                 heart.textContent = '❤️';
                 heart.classList.add('heart');
-
-                // Posisikan emoji hati tepat di atas emoji surat 💌
                 const judul = document.querySelector('.judul');
                 const rect = judul.getBoundingClientRect();
-
-                // Hitung posisi tengah emoji surat 💌
-                const centerX = rect.left + rect.width / 2 - 10; // Tengah horizontal
-                const centerY = rect.top - 30; // 30px di atas emoji surat
-
-                heart.style.left = `${centerX}px`; // Posisi horizontal (tengah)
-                heart.style.top = `${centerY}px`; // Posisi vertikal (di atas)
-
+                const centerX = rect.left + rect.width / 2 - 10;
+                const centerY = rect.top - 30;
+                heart.style.left = `${centerX}px`;
+                heart.style.top = `${centerY}px`;
                 document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 3000); // Hapus setelah animasi selesai
-            }, 1000); // Interval pembuatan emoji hati (setiap 1 detik)
-
-            // Mulai efek hujan hati
+                setTimeout(() => heart.remove(), 3000);
+            }, 1000);
             startContinuousHeartRain();
         });
 
-        // Efek Hujan Hati
         const heartEmojis = ['❤️', '💙', '💜', '💛', '💚', '🧡', '🤎', '🖤', '🤍', '💖', '💘', '💝'];
-
         function startContinuousHeartRain() {
             setInterval(() => {
                 createHeart();
-            }, 200); // Hearts keep falling every 200ms
+            }, 200);
         }
 
         function createHeart() {
@@ -379,10 +322,8 @@
             const heart = document.createElement("span");
             heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
             heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.animationDuration = (Math.random() * 3 + 2) + "s"; // Random fall speed
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
             heartContainer.appendChild(heart);
-
-            // Remove heart after it falls
             setTimeout(() => heart.remove(), 5000);
         }
     </script>
