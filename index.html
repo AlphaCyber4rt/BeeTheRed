@@ -32,6 +32,7 @@
             text-align: center;
             font-size: 2rem;
             margin-bottom: 15px;
+            position: relative; /* Untuk menempatkan emoji hati */
         }
 
         .judul-small {
@@ -83,7 +84,7 @@
             }
             100% {
                 opacity: 0;
-                transform: translateY(-100px) scale(0.5);
+                transform: translateY(-50px) scale(0.8);
             }
         }
 
@@ -300,17 +301,24 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('step1').classList.add('active');
 
-            // Auto-generate emoji hati
+            // Auto-generate emoji hati tepat di atas 💌
             setInterval(() => {
                 const heart = document.createElement('div');
                 heart.textContent = '❤️';
                 heart.classList.add('heart');
-                const animatedText = document.getElementById('animatedText');
-                const rect = animatedText.getBoundingClientRect();
 
-                // Posisi emoji hati di sekitar teks
-                heart.style.left = `${rect.left + Math.random() * rect.width}px`;
-                heart.style.top = `${rect.top + Math.random() * rect.height}px`;
+                // Posisikan emoji hati tepat di atas emoji surat 💌
+                const judul = document.querySelector('.judul');
+                const rect = judul.getBoundingClientRect();
+
+                // Hitung posisi tengah emoji surat 💌
+                const emojiWidth = 20; // Perkiraan lebar emoji surat
+                const emojiHeight = 20; // Perkiraan tinggi emoji surat
+                const centerX = rect.left + rect.width / 2 - emojiWidth / 2;
+                const centerY = rect.top - emojiHeight - 10; // 10px di atas emoji surat
+
+                heart.style.left = `${centerX}px`; // Posisi horizontal (tengah)
+                heart.style.top = `${centerY}px`; // Posisi vertikal (di atas)
 
                 document.body.appendChild(heart);
                 setTimeout(() => heart.remove(), 3000); // Hapus setelah animasi selesai
