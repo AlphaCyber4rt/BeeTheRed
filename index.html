@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeeTheRed</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Comic Neue', cursive;
             background: linear-gradient(135deg, #ffd7b5, #ffe6cc);
@@ -25,6 +30,7 @@
             padding: 30px;
             position: relative;
             overflow: hidden;
+            z-index: 2; /* Pastikan konten utama di atas partikel */
         }
 
         .judul {
@@ -144,6 +150,36 @@
             .emoji { font-size: 2.5rem; }
             .tombol { padding: 10px 20px; }
         }
+
+        /* Efek Hujan Hati */
+        .heart-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1; /* Di bawah konten utama */
+        }
+
+        .heart-rain span {
+            position: absolute;
+            bottom: 100%;
+            font-size: 24px;
+            opacity: 0.9;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -225,6 +261,9 @@
         <button onclick="toggleAudio()" id="audioButton">🎵 Putar Lagu</button>
         <audio id="audio" src="https://alphacyber4rt.github.io/File/DJikhlas.mp3" preload="auto"></audio>
     </div>
+
+    <!-- Efek Hujan Hati -->
+    <div class="heart-rain" id="heartRain"></div>
 
     <script>
         let currentStep = 1;
@@ -312,18 +351,40 @@
                 const rect = judul.getBoundingClientRect();
 
                 // Hitung posisi tengah emoji surat 💌
-                const emojiWidth = 20; // Perkiraan lebar emoji surat
-                const emojiHeight = 20; // Perkiraan tinggi emoji surat
-                const centerX = rect.left + rect.width / 2 - emojiWidth / 2;
-                const centerY = rect.top - emojiHeight - 10; // 10px di atas emoji surat
+                const centerX = rect.left + rect.width / 2 - 10; // Tengah horizontal
+                const centerY = rect.top - 30; // 30px di atas emoji surat
 
                 heart.style.left = `${centerX}px`; // Posisi horizontal (tengah)
                 heart.style.top = `${centerY}px`; // Posisi vertikal (di atas)
 
                 document.body.appendChild(heart);
                 setTimeout(() => heart.remove(), 3000); // Hapus setelah animasi selesai
-            }, 500); // Interval pembuatan emoji hati
+            }, 1000); // Interval pembuatan emoji hati (setiap 1 detik)
+
+            // Mulai efek hujan hati
+            startContinuousHeartRain();
         });
+
+        // Efek Hujan Hati
+        const heartEmojis = ['❤️', '💙', '💜', '💛', '💚', '🧡', '🤎', '🖤', '🤍', '💖', '💘', '💝'];
+
+        function startContinuousHeartRain() {
+            setInterval(() => {
+                createHeart();
+            }, 200); // Hearts keep falling every 200ms
+        }
+
+        function createHeart() {
+            const heartContainer = document.getElementById("heartRain");
+            const heart = document.createElement("span");
+            heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s"; // Random fall speed
+            heartContainer.appendChild(heart);
+
+            // Remove heart after it falls
+            setTimeout(() => heart.remove(), 5000);
+        }
     </script>
 </body>
 </html>
