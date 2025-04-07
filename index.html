@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeeTheRed </title>
+    <title>BeeTheRed</title>
     <style>
         body {
             font-family: 'Comic Neue', cursive;
@@ -31,6 +31,18 @@
             text-align: center;
             font-size: 2rem;
             margin-bottom: 15px;
+        }
+
+        .judul-small {
+            text-align: center;
+            font-size: 0.8rem;
+            color: white;
+            background: #d32f2f;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            display: inline-block;
+            cursor: pointer; /* Menambahkan pointer untuk efek klik */
         }
 
         .instruksi {
@@ -95,81 +107,82 @@
             .tombol { padding: 10px 20px; }
         }
     </style>
+    <!-- Menggunakan library efek teks -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.prinsh.com/NathanPrinsley-textstyle/nprinsh-stext.css"/>
 </head>
 <body>
     <div class="amplop">
-    <h1 class="judul">💌 RAHASIA HATI 💌</h1>
-    <p class="instruksi">Klik untuk Rahasia hati yang belum pernah diceritain… 😏😜 </p>
+        <!-- Tulisan kecil dengan efek klik -->
+        <p id="animatedText" class="judul-small">AlphaCyber4rt</p>
+        <h1 class="judul">💌 RAHASIA HATI 💌</h1>
+        <p class="instruksi">Klik untuk Rahasia hati yang belum pernah diceritain… 😏😜 </p>
 
-    <!-- LANGKAH 1 -->
-    <div class="step active" id="step1" onclick="lanjut(2)">
-        <p style="font-size:1.1em">📅 Tanggal: <em>Selamanya (Meskipun kamu pacar orang 😝)</em></p>
-        <div class="emoji-container">
-            <div class="emoji" onclick="event.stopPropagation(); animateEmoji('👇')">👇</div>
+        <!-- LANGKAH 1 -->
+        <div class="step active" id="step1" onclick="lanjut(2)">
+            <p style="font-size:1.1em">📅 Tanggal: <em>Selamanya (Meskipun kamu pacar orang 😝)</em></p>
+            <div class="emoji-container">
+                <div class="emoji" onclick="event.stopPropagation(); animateEmoji('👇')">👇</div>
+            </div>
+            <button class="tombol" onclick="event.stopPropagation(); playAudio(); lanjut(2)">Lembar Cerita Pertama 📬</button>
         </div>
-        <button class="tombol" onclick="event.stopPropagation(); playAudio(); lanjut(2)">Lembar Cerita Pertama 📬</button>
+
+        <!-- BAB 1 -->
+        <div class="step" id="step2" onclick="lanjut(3)">
+            <h3>💬 BAB 1: OBROLAN YANG NGGAK PERNAH NGEJENUHIN</h3>
+            <p style="font-size:0.9em">
+                "Ngobrol sama kamu tuh kayak ngemil keripik..."<br>
+                😆 Nggak bisa berhenti<br>
+                💤 Meski capek, selalu pengen jawab dulu sebelum tidur<br>
+                😳 Kadang random, kadang dalem banget (tapi selalu bikin deg-degan)<br>
+                <small>(Kita nggak perlu topik penting kok—asal kamu di sana, aku udah senang)</small>
+            </p>
+            <div class="emoji-container">
+                <div class="emoji" onclick="event.stopPropagation(); animateEmoji('🎧')">🎧</div>
+            </div>
+            <button class="tombol" onclick="event.stopPropagation(); lanjut(3)">Lanjut, Lembar Cerita ke2 ❤️</button>
+        </div>
+
+        <!-- BAB 2 -->
+        <div class="step" id="step3" onclick="lanjut(4)">
+            <h3>🎢 BAB 2: MOMEN-MOMEN KECIL YANG NGANGENIN</h3>
+            <p style="font-size:0.9em">
+                "Aku nggak ingat semua obrolan kita, tapi..."<br>
+                💬 Aku inget gimana rasanya waktu kamu bilang 'jaga diri ya'<br>
+                🌃 Aku selalu nunggu notifikasi dari kamu kayak nungguin bintang jatuh<br>
+                💭 Rasanya tiap pesan dari kamu tuh bikin hati lebih ringan<br>
+                <em>"Bukan soal waktu kita ngobrol, tapi gimana kamu bisa bikin aku senyum, meski kita cuma sebentar ngobrol"</em>
+            </p>
+            <div class="emoji-container">
+                <div class="emoji" onclick="event.stopPropagation(); animateEmoji('💫')">💫</div>
+            </div>
+            <button class="tombol" onclick="event.stopPropagation(); lanjut(4)">Lembaran Berikutnya 💖</button>
+        </div>
+
+        <!-- BAB 3 -->
+        <div class="step" id="step4">
+            <h3 style="color:#d32f2f">🌅 BAB 3: STATUS BOLEH NGGAK JELAS, ASAL KAMU NGGAK ILANG 😆</h3>
+            <div style="text-align:left;padding:10px;font-size:0.9em">
+                <p>🕵️ Aku nggak nanya “kita ini apa?”:<br>
+                <small>"Tapi kalau kamu tiba-tiba hilang, aku bakal jadi detektif 24 jam" 🔍😂</small></p>
+
+                <p>🎁 Aku belum ngasih coklat atau bunga:<br>
+                <small>"Tapi stok perhatian udah aku siapkan khusus buat kamu tiap hari (bisa COD langsung ke hati 💌)"</small></p>
+
+                <p>🎭 Aku nggak maksa jadi pacar:<br>
+                <small>"Tapi kalau ada cowok lain yang deketin kamu... aku bisa pura-pura jadi yang udah duluan 🫣✨"</small></p>
+            </div>
+
+            <div class="emoji-container">
+                <div class="emoji" onclick="animateEmoji('🫠')">🫠</div>
+            </div>
+
+            <div style="border-top:2px dashed #ff6d00;padding:15px">
+                <p style="font-size:0.9em">❤️ Intinya:<br>
+                Aku mungkin nggak bisa ngasih kamu semua hal indah di dunia...<br>
+                <span style="font-size:1.2em">Tapi aku bisa jadi alasan kamu senyum 2 detik lebih lama dari biasanya 😁✨</span></p>
+            </div>
+        </div>
     </div>
-
-    <!-- BAB 1 -->
-    <div class="step" id="step2" onclick="lanjut(3)">
-        <h3>💬 BAB 1: OBROLAN YANG NGGAK PERNAH NGEJENUHIN</h3>
-        <p style="font-size:0.9em">
-            "Ngobrol sama kamu tuh kayak ngemil keripik..."<br>
-            😆 Nggak bisa berhenti<br>
-            💤 Meski capek, selalu pengen jawab dulu sebelum tidur<br>
-            😳 Kadang random, kadang dalem banget (tapi selalu bikin deg-degan)<br>
-            <small>(Kita nggak perlu topik penting kok—asal kamu di sana, aku udah senang)</small>
-        </p>
-        <div class="emoji-container">
-            <div class="emoji" onclick="event.stopPropagation(); animateEmoji('🎧')">🎧</div>
-        </div>
-        <button class="tombol" onclick="event.stopPropagation(); lanjut(3)">Lanjut, Lembar Cerita ke2 ❤️</button>
-    </div>
-
-    <!-- BAB 2 -->
-    <div class="step" id="step3" onclick="lanjut(4)">
-        <h3>🎢 BAB 2: MOMEN-MOMEN KECIL YANG NGANGENIN</h3>
-        <p style="font-size:0.9em">
-            "Aku nggak ingat semua obrolan kita, tapi..."<br>
-            💬 Aku inget gimana rasanya waktu kamu bilang 'jaga diri ya'<br>
-            🌃 Aku selalu nunggu notifikasi dari kamu kayak nungguin bintang jatuh<br>
-            💭 Rasanya tiap pesan dari kamu tuh bikin hati lebih ringan<br>
-            <em>"Bukan soal waktu kita ngobrol, tapi gimana kamu bisa bikin aku senyum, meski kita cuma sebentar ngobrol"</em>
-        </p>
-        <div class="emoji-container">
-            <div class="emoji" onclick="event.stopPropagation(); animateEmoji('💫')">💫</div>
-        </div>
-        <button class="tombol" onclick="event.stopPropagation(); lanjut(4)">Lembaran Berikutnya 💖</button>
-    </div>
-
-    <!-- BAB 3 -->
-    <div class="step" id="step4">
-        <h3 style="color:#d32f2f">🌅 BAB 3: STATUS BOLEH NGGAK JELAS, ASAL KAMU NGGAK ILANG 😆</h3>
-        <div style="text-align:left;padding:10px;font-size:0.9em">
-            <p>🕵️ Aku nggak nanya “kita ini apa?”:<br>
-            <small>"Tapi kalau kamu tiba-tiba hilang, aku bakal jadi detektif 24 jam" 🔍😂</small></p>
-
-            <p>🎁 Aku belum ngasih coklat atau bunga:<br>
-            <small>"Tapi stok perhatian udah aku siapkan khusus buat kamu tiap hari (bisa COD langsung ke hati 💌)"</small></p>
-
-            <p>🎭 Aku nggak maksa jadi pacar:<br>
-            <small>"Tapi kalau ada cowok lain yang deketin kamu... aku bisa pura-pura jadi yang udah duluan 🫣✨"</small></p>
-        </div>
-
-        <div class="emoji-container">
-            <div class="emoji" onclick="animateEmoji('🫠')">🫠</div>
-        </div>
-
-        <div style="border-top:2px dashed #ff6d00;padding:15px">
-            <p style="font-size:0.9em">❤️ Intinya:<br>
-            Aku mungkin nggak bisa ngasih kamu semua hal indah di dunia...<br>
-            <span style="font-size:1.2em">Tapi aku bisa jadi alasan kamu senyum 2 detik lebih lama dari biasanya 😁✨</span></p>
-        </div>
-    </div>
-</div>
-
-
- 
 
     <!-- Audio Player -->
     <div style="position: fixed; bottom: 20px; right: 20px; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
@@ -252,6 +265,18 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('step1').classList.add('active');
         });
+
+        // Animasi klik untuk AlphaCyber4rt
+        const animatedText = document.getElementById('animatedText');
+        animatedText.addEventListener('click', () => {
+            // Menghapus kelas untuk memicu reflow
+            animatedText.classList.remove('nprinsh-stext');
+            void animatedText.offsetWidth; // Trigger reflow secara manual
+            animatedText.classList.add('nprinsh-stext'); // Menambahkan kelas lagi untuk memulai animasi
+        });
+
+        // Memastikan kelas awal sudah ada
+        animatedText.classList.add('nprinsh-stext');
     </script>
 </body>
 </html>
