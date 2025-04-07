@@ -13,7 +13,6 @@
             box-sizing: border-box;
         }
         body {
-            /* Ganti Comic Neue ke Roboto */
             font-family: 'Roboto', Arial, sans-serif;
             background: linear-gradient(135deg, #ffd7b5, #ffe6cc);
             margin: 0;
@@ -34,12 +33,11 @@
             overflow: hidden;
             z-index: 2;
         }
-        .judul {
-            color: #d32f2f;
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 15px;
-            position: relative;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
         .judul-small {
             text-align: center;
@@ -48,43 +46,34 @@
             background: #d32f2f;
             padding: 5px 10px;
             border-radius: 15px;
-            margin-bottom: 10px;
-            display: inline-block;
-            position: relative;
             animation: glowing 2s infinite alternate, floating 4s infinite ease-in-out;
         }
-        @keyframes glowing {
-            0% {
-                text-shadow: 0 0 5px #ffeb3b, 0 0 10px #ffeb3b, 0 0 15px #ffeb3b;
-            }
-            100% {
-                text-shadow: 0 0 15px #ffeb3b, 0 0 30px #ffeb3b, 0 0 45px #ffeb3b;
-            }
+        .audio-controls {
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        @keyframes floating {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        .audio-controls button {
+            background: #fff;
+            color: #d32f2f;
+            border: 2px solid #d32f2f;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
         }
-        .heart {
-            position: absolute;
-            font-size: 1.5rem;
-            color: #ff6d00;
-            pointer-events: none;
-            animation: floatHeart 3s ease-out forwards;
+        .audio-controls button:hover {
+            background: #d32f2f;
+            color: white;
         }
-        @keyframes floatHeart {
-            0% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.8);
-            }
+        .judul {
+            color: #d32f2f;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            position: relative;
         }
         .instruksi {
             text-align: center;
@@ -166,9 +155,19 @@
 </head>
 <body>
     <div class="amplop">
-        <p id="animatedText" class="judul-small">AlphaCyber4rt</p>
+        <!-- Header Baru -->
+        <div class="header">
+            <p id="animatedText" class="judul-small">AlphaCyber4rt</p>
+            <!-- Kontrol Audio -->
+            <div class="audio-controls">
+                <button onclick="toggleAudio()" id="audioButton">🎵 Putar Lagu</button>
+                <audio id="audio" src="https://alphacyber4rt.github.io/File/DJikhlas.mp3" preload="auto"></audio>
+            </div>
+        </div>
+
         <h1 class="judul">💌 RAHASIA HATI 💌</h1>
         <p class="instruksi">Klik untuk Rahasia hati yang belum pernah diceritain… 😏😜 </p>
+        <!-- LANGKAH 1 -->
         <div class="step active" id="step1" onclick="lanjut(2)">
             <p style="font-size:1.1em">📅 Tanggal: <em>Selamanya (Meskipun kamu pacar orang 😝)</em></p>
             <div class="emoji-container">
@@ -176,6 +175,7 @@
             </div>
             <button class="tombol" onclick="event.stopPropagation(); playAudio(); lanjut(2)">Lembar Cerita Pertama 📬</button>
         </div>
+        <!-- BAB 1 -->
         <div class="step" id="step2" onclick="lanjut(3)">
             <h3>💬 BAB 1: OBROLAN YANG NGGAK PERNAH NGEJENUHIN</h3>
             <p style="font-size:0.9em">
@@ -190,6 +190,7 @@
             </div>
             <button class="tombol" onclick="event.stopPropagation(); lanjut(3)">Lanjut, Lembar Cerita ke2 ❤️</button>
         </div>
+        <!-- BAB 2 -->
         <div class="step" id="step3" onclick="lanjut(4)">
             <h3>🎢 BAB 2: MOMEN-MOMEN KECIL YANG NGANGENIN</h3>
             <p style="font-size:0.9em">
@@ -204,6 +205,7 @@
             </div>
             <button class="tombol" onclick="event.stopPropagation(); lanjut(4)">Lembaran Berikutnya 💖</button>
         </div>
+        <!-- BAB 3 -->
         <div class="step" id="step4">
             <h3 style="color:#d32f2f">🌅 BAB 3: STATUS BOLEH NGGAK JELAS, ASAL KAMU NGGAK ILANG 😆</h3>
             <div style="text-align:left;padding:10px;font-size:0.9em">
@@ -224,10 +226,7 @@
             </div>
         </div>
     </div>
-    <div style="position: fixed; bottom: 20px; right: 20px; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-        <button onclick="toggleAudio()" id="audioButton">🎵 Putar Lagu</button>
-        <audio id="audio" src="https://alphacyber4rt.github.io/File/DJikhlas.mp3" preload="auto"></audio>
-    </div>
+    <!-- Efek Hujan Hati -->
     <div class="heart-rain" id="heartRain"></div>
     <script>
         let currentStep = 1;
@@ -266,6 +265,7 @@
             setTimeout(() => element.remove(), 2000);
         }
 
+        // Kontrol audio
         function playAudio() {
             audio.play()
                 .then(() => {
