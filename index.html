@@ -18,7 +18,7 @@
         .amplop {
             background: white;
             border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             width: 95%;
             max-width: 500px;
             padding: 30px;
@@ -42,7 +42,28 @@
             border-radius: 15px;
             margin-bottom: 10px;
             display: inline-block;
-            cursor: pointer; /* Menambahkan pointer untuk efek klik */
+            position: relative;
+            animation: glowing 2s infinite alternate, floating 4s infinite ease-in-out;
+        }
+
+        /* Animasi glowing */
+        @keyframes glowing {
+            0% {
+                text-shadow: 0 0 5px #ffeb3b, 0 0 10px #ffeb3b, 0 0 15px #ffeb3b;
+            }
+            100% {
+                text-shadow: 0 0 15px #ffeb3b, 0 0 30px #ffeb3b, 0 0 45px #ffeb3b;
+            }
+        }
+
+        /* Animasi floating */
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .instruksi {
@@ -96,23 +117,16 @@
             transition: 0.3s;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-100vh); opacity: 0; }
-        }
-
         @media (max-width: 480px) {
             .judul { font-size: 1.5rem; }
             .emoji { font-size: 2.5rem; }
             .tombol { padding: 10px 20px; }
         }
     </style>
-    <!-- Menggunakan library efek teks -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.prinsh.com/NathanPrinsley-textstyle/nprinsh-stext.css"/>
 </head>
 <body>
     <div class="amplop">
-        <!-- Tulisan kecil dengan efek klik -->
+        <!-- Tulisan kecil dengan efek auto-play -->
         <p id="animatedText" class="judul-small">AlphaCyber4rt</p>
         <h1 class="judul">💌 RAHASIA HATI 💌</h1>
         <p class="instruksi">Klik untuk Rahasia hati yang belum pernah diceritain… 😏😜 </p>
@@ -196,21 +210,21 @@
         let isPlaying = false;
 
         function lanjut(nomor) {
-            if(nomor > totalSteps) return;
-            
+            if (nomor > totalSteps) return;
+
             // Sembunyikan semua step
             document.querySelectorAll('.step').forEach(step => {
                 step.style.display = 'none';
                 step.classList.remove('active');
             });
-            
+
             // Tampilkan step baru
             const target = document.getElementById('step' + nomor);
             setTimeout(() => {
                 target.style.display = 'block';
                 setTimeout(() => target.classList.add('active'), 50);
             }, 300);
-            
+
             currentStep = nomor;
         }
 
@@ -220,8 +234,8 @@
             element.style.cssText = `
                 position: fixed;
                 font-size: 2rem;
-                left: ${Math.random()*100}vw;
-                top: ${Math.random()*100}vh;
+                left: ${Math.random() * 100}vw;
+                top: ${Math.random() * 100}vh;
                 animation: float 2s linear;
                 color: #ff6d00;
                 opacity: 0.7;
@@ -265,18 +279,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('step1').classList.add('active');
         });
-
-        // Animasi klik untuk AlphaCyber4rt
-        const animatedText = document.getElementById('animatedText');
-        animatedText.addEventListener('click', () => {
-            // Menghapus kelas untuk memicu reflow
-            animatedText.classList.remove('nprinsh-stext');
-            void animatedText.offsetWidth; // Trigger reflow secara manual
-            animatedText.classList.add('nprinsh-stext'); // Menambahkan kelas lagi untuk memulai animasi
-        });
-
-        // Memastikan kelas awal sudah ada
-        animatedText.classList.add('nprinsh-stext');
     </script>
 </body>
 </html>
